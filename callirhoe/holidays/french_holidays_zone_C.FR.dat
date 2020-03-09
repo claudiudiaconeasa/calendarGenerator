@@ -1,0 +1,32 @@
+# type|DATE*span|footer|header|flags
+# type|DATE1-DATE2|footer|header|flags
+# type|DATE|footer|header|flags
+#
+# type:
+# d: event occurs annually fixed day/month: MMDD
+# d: event occurs monthly, fixed day: DD
+# d: fixed day/month/year combination (e.g. deadline, trip, etc.): YYYYMMDD
+# oe: Orthodox Easter-dependent holiday, annually
+# ge: Georgios' name day, Orthodox Easter dependent holiday, annually
+# ce: Catholic Easter holiday
+#
+# DATE*span and DATE1-DATE2 supported only for YYYYMMDD
+# flags = {off, multi}
+
+d|20130302-20130317|vacances d'hiver||multi
+d|20130427-20130512|vacances de printemps||multi
+
+d|20140215-20140302|vacances d'hiver||multi
+d|20140412-20140427|vacances de printemps||multi
+
+d|20150214-20150301|vacances d'hiver||multi
+d|20150418-20150503|vacances de printemps||multi
+
+d|20160220-20160306|vacances d'hiver||multi
+d|20160416-20160501|vacances de printemps||multi
+
+d|20170204-20170219|vacances d'hiver||multi
+d|20170401-20170417|vacances de printemps||multi
+
+d|20180219-20180302|vacances d'hiver||multi
+d|20180416-20180427|vacances de printemps||multi

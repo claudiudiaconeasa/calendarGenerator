@@ -1,0 +1,19 @@
+[[source]]
+name = "pypi"
+url = "https://pypi.org/simple"
+verify_ssl = true
+
+[dev-packages]
+appdirs = "*"
+beautifulsoup4 = "*"
+bs4 = "*"
+cairocffi = "*"
+
+[packages]
+appdirs = "*"
+beautifulsoup4 = "*"
+bs4 = "*"
+cairocffi = "*"
+
+[requires]
+python_version = "3.8"

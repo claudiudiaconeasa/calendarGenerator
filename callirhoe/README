@@ -1,0 +1,31 @@
+Third year project, an engaging history tool, a command line calendar creator for historical corpus' and events.
+
+Requirements neded:
+
+1 - install image magick for python into your python environment
+
+2 - install all the necessary requirements by doing:
+    pip install -r requirements.txt
+    
+    as python 2 is used here due to calmagick being python 2 you may need to also run :
+    pip2 install -r requirements.txt
+    
+To create first test calendar:
+
+    python creatorTest.py 'output file name minus .pdf'
+
+To create a calendar you need to input the csv file of events:
+
+    python creator.py 'output file name minus .pdf' 'location of csv file'
+
+To use the current manchester corpus:
+    Firstly update the csv file by running:
+    python parser.py
+    
+    then input the csv to the creator:
+    python creator.py 'output file name minus .pdf' Events/events.csv
+    
+How to use the program:
+    firstly you will be prompted whether you would like to manually choose the events
+    if you choose no the events will be random 
+    if you choose yes you will be prompted for each month to choose an event 
