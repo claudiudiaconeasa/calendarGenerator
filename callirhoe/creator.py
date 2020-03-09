@@ -75,26 +75,26 @@ def createTop(month, currentPhoto, currentText, currentQR):
     print("\tCreating Top Half")
     #make the photo for the current month fit into a size suitable for
     #the calendar
-    os.system("convert " + currentPhoto + " -resize 940x1000" +
+    os.system("sudo convert " + currentPhoto + " -resize 940x1000" +
              " Resources/resized" + str(month) + ".png")
 
     #combine the resized image with the background for the top
-    os.system("convert Resources/background2.png Resources/resized" +
+    os.system("sudo convert Resources/background2.png Resources/resized" +
               str(month) + ".png -gravity west -geometry +20+25 " +
               "-composite Resources/outPhoto" + str(month) + ".jpg")
 
     #use the text to add it to the photo
-    os.system("convert Resources/outPhoto" + str(month) +
+    os.system("sudo convert Resources/outPhoto" + str(month) +
               ".jpg -gravity west -pointsize 40 -size 900x " +
               "caption:@" + currentText + " Resources/outputtext" + str(month) + ".jpg")
-    os.system("convert Resources/outputtext" + str(month) + "-0.jpg Resources/outputtext" +
+    os.system("sudo convert Resources/outputtext" + str(month) + "-0.jpg Resources/outputtext" +
               str(month) + "-1.jpg -gravity northwest -geometry +980+150" +
               " -composite Resources/outputWithText" + str(month) + ".jpg")
 
     #add the qr code to the calendar
     print("\tAdding QR code")
-    os.system("convert " + currentQR + " -resize 150x150 " + currentQR)
-    os.system("convert Resources/outputWithText" + str(month) + ".jpg " +
+    os.system("sudo convert " + currentQR + " -resize 150x150 " + currentQR)
+    os.system("sudo convert Resources/outputWithText" + str(month) + ".jpg " +
               currentQR + " -gravity northeast -geometry -5-5 -composite " +
               "Resources/outputWithText" + str(month) + ".jpg")
 
@@ -108,17 +108,17 @@ def createPDF(month, CalendarName):
 
     #combine the photo and text portion to the calendar for month
     print("\tCombining Dates and Event")
-    os.system("convert -append Resources/outputWithText" + str(month) +
+    os.system("sudo convert -append Resources/outputWithText" + str(month) +
               ".jpg HistoryCalendar/HistoryCalendar" + str(month)
               + ".jpg HistoryCalendar/testCalender" + str(month) + ".jpg")
 
     print("\tAdding to PDF\n")
     #combine all the months into one printable pdf file
     if month == 1:
-        os.system("convert HistoryCalendar/testCalender" + str(month) +
+        os.system("sudo convert HistoryCalendar/testCalender" + str(month) +
                 ".jpg " + CalendarName + ".pdf")
     else:
-        os.system("convert " + CalendarName + ".pdf HistoryCalendar/testCalender" +
+        os.system("sudo convert " + CalendarName + ".pdf HistoryCalendar/testCalender" +
                 str(month) + ".jpg " + CalendarName + ".pdf")
 
 def main_program(csvFile, name):
