@@ -21,4 +21,4 @@ def generate_pdf():
     return send_file(secure_filename(idName + '.pdf'))
 
 if __name__ == '__main__':
-    app.run()
+    app.run(host='0.0.0.0')
