@@ -4,21 +4,23 @@ from uuid import uuid4
 from werkzeug.utils import secure_filename
 import creator
 
-UPLOAD_FOLDER = './uploads'
+UPLOAD_FOLDER = '/home/claudiu/calendarGenerator/callirhoe/uploads'
 
-app = Flask(__name__)
-app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
+application = Flask(__name__)
+application.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
 
-@app.route('/generate', methods=['POST'])
+@application.route('/generate', methods=['POST'])
 def generate_pdf():
     file = request.files['file']
     idName = str(uuid4())
     filename = secure_filename(idName + '.csv')
-    file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+    file.save(os.path.join(application.config['UPLOAD_FOLDER'], filename))
 
-    creator.main_program(os.path.join(app.config['UPLOAD_FOLDER'], filename), idName)
+    creator.main_program(os.path.join(application.config['UPLOAD_FOLDER'], filename), idName)
     return send_file(secure_filename(idName + '.pdf'))
 
-if __name__ == '__main__':
-    app.run(host='0.0.0.0')
+@application.route('/')
+def home():
+    return 'hello'
+
