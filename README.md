@@ -2,7 +2,7 @@
 
 Collaboration with George Clark.
 
-Flask application that receives an HTTP request from Java in order to generate and download de calendar.
+Flask application that receives an HTTP request from Java in order to generate the calendar and populate it with events from a TimeMap.
 Hosted on Digital Ocean: 
 http://165.22.125.196:1337/
 
