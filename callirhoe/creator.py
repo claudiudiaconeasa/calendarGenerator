@@ -47,12 +47,14 @@ def downloadImage(month, urlImage):
     """
 
     #gets the image content from the url
-    header = {'User-Agent':'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/79.0.3945.130 Safari/537.36'}
-    image = requests.get(urlImage, header)
+    header = {'User-Agent':'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.113 Safari/537.36','Referer':urlImage}
+    session = requests.Session()
+    image = session.get(urlImage,headers=header)
     #create a file and save the contents of the image to it
     file = open("Events/Event" + str(month) + ".jpg", "wb")
     file.write(image.content)
     file.close()
+
 
 def createQR(month, urlQr):
     """
@@ -141,12 +143,48 @@ def main_program(csvFile, name):
       monthInfo = readCSV(month, csvFile, mode)
       #retreive the info of a random event for the current month
 
+      if monthInfo["EventId"]:
+          row_number = monthInfo["EventId"]
+      else:
+          row_number = ''
+
+      if monthInfo["CalendarId"]:
+          calendar_id = monthInfo["CalendarId"]
+      else:
+          calendar_id = ''
+
+      print(monthInfo)
+
       print("\tCreating Calendar Dates")
       calmagick.main_program(background, month, True)
       #create the calendar of the current month
 
       downloadImage(month, monthInfo["Media"])
-      createQR(month, monthInfo["Source URL"])
+      if month == 1:
+     	 createQR(month,"https://historytools.herokuapp.com/?utm_source=QRcode&utm_medium=januaryCalendar&utm_campaign=january&event_id=" + row_number + "&calendar_id=" + calendar_id)
+      elif month == 2:
+         createQR(month, "https://historytools.herokuapp.com/?utm_source=QRcode&utm_medium=februaryCalendar&utm_campaign=february&event_id=" + row_number + "&calendar_id=" + calendar_id)
+      elif month == 3:
+         createQR(month, "https://historytools.herokuapp.com/?utm_source=QRcode&utm_medium=marchCalendar&utm_campaign=march&event_id=" + row_number + "&calendar_id=" + calendar_id)
+      elif month == 4:
+         createQR(month, "https://historytools.herokuapp.com/?utm_source=QRcode&utm_medium=aprilCalendar&utm_campaign=april&event_id=" + row_number + "&calendar_id=" + calendar_id)
+      elif month == 5:
+         createQR(month, "https://historytools.herokuapp.com/?utm_source=QRcode&utm_medium=mayCalendar&utm_campaign=may&event_id" + row_number + "&calendar_id=" + calendar_id)
+      elif month == 6:
+         createQR(month, "https://historytools.herokuapp.com/?utm_source=QRcode&utm_medium=juneCalendar&utm_campaign=june&event_id=" + row_number + "&calendar_id=" + calendar_id)
+      elif month == 7:
+         createQR(month, "https://historytools.herokuapp.com/?utm_source=QRcode&utm_medium=julyCalendar&utm_campaign=july&event_id=" + row_number + "&calendar_id=" + calendar_id)
+      elif month == 8:
+         createQR(month, "https://historytools.herokuapp.com/?utm_source=QRcode&utm_medium=augustCalendar&utm_campaign=august&event_id=" + row_number + "&calendar_id=" + calendar_id)
+      elif month == 9:
+         createQR(month, "https://historytools.herokuapp.com/?utm_source=QRcode&utm_medium=septemberCalendar&utm_campaign=september&event_id=" + row_number + "&calendar_id=" + calendar_id)
+      elif month == 10:
+         createQR(month, "https://historytools.herokuapp.com/?utm_source=QRcode&utm_medium=octoberCalendar&utm_campaign=october&event_id=" + row_number + "&calendar_id=" + calendar_id)
+      elif month == 11:
+         createQR(month, "https://historytools.herokuapp.com/?utm_source=QRcode&utm_medium=novemberCalendar&utm_campaign=november&event_id=" + row_number + "&calendar_id=" + calendar_id)
+      elif month == 12:
+         createQR(month, "https://historytools.herokuapp.com/?utm_source=QRcode&utm_medium=decemberCalendar&utm_campaign=december&event_id=" + row_number + "&calendar_id=" + calendar_id)
+
       #get the photo for that event and create qr code
 
       currentPhoto = "Events/Event" + str(month) + ".jpg"

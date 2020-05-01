@@ -54,5 +54,5 @@ def poll_pdf():
 
 @application.route('/')
 def home():
-    return 'hello'
+    return 'Hello, the following webserver is going to provide a response with a calendar based on a .csv file input'
 
